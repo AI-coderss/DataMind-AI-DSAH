@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root[data-theme="light"]{
+  color-scheme: light;
+
+  /* brand & base */
+  --primary: #6366f1;           /* blue brand */
+  --bg-app: #ffffff;            /* page background */
+  --ink: #0d0f14;               /* main text (black) */
+  --ink-muted: #3a3f45;         /* body-muted */
+  --ink-subtle: #5a6168;        /* secondary captions */
+
+  /* surfaces */
+  --surface: #ffffff;
+  --surface-2: #f5f7fb;
+
+  /* borders */
+  --border: rgba(0,0,0,.14);
+
+  /* links */
+  --link: var(--primary);
+  --link-hover: #b31243;
+
+  /* glass */
+  --glass-bg: linear-gradient(135deg, rgba(255,255,255,.32), rgba(255,255,255,.08));
+  --glass-border: 1px solid rgba(0,0,0,.08);
+  --glass-ink: #0f1218;
+
+  /* accents */
+  --highlight: #fff59d;
+  
+  /* shadcn compat */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary-hsl: 263 70% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 240 5.9% 90%;
+  --ring: 263 70% 50%;
+  --radius: 0.5rem;
+}
+
+/* ---------- DARK MODE ---------- */
+:root[data-theme="dark"]{
+  color-scheme: dark;
+
+  /* brand & base */
+  --primary: #06b6d4;           /* cyan brand */
+  --bg-app: #0f172a;            /* page background */
+  --ink: #f5f8ff;               /* main text (white) */
+  --ink-muted: #c9d4ff;
+  --ink-subtle: #aab7cf;
+
+  /* surfaces */
+  --surface: #0f172a;
+  --surface-2: #121826;
+
+  /* borders */
+  --border: rgba(255,255,255,.22);
+
+  /* links */
+  --link: var(--primary);
+  --link-hover: #3dd6ea;
+
+  /* glass */
+  --glass-bg: linear-gradient(135deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+  --glass-border: 1px solid rgba(255,255,255,.28);
+  --glass-ink: #f5f8ff;
+
+  /* accents */
+  --highlight: #ffd54f;
+  
+  /* shadcn compat */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 7%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 7%;
+  --popover-foreground: 0 0% 98%;
+  --primary-hsl: 263 70% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 240 3.7% 15.9%;
+  --ring: 263 70% 60%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background: var(--bg-app);
+    color: var(--ink);
+  }
+  
+  /* Hide scrollbars globally while allowing scroll */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border);
+  }
+  
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: var(--glass-border);
+    color: var(--glass-ink);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
